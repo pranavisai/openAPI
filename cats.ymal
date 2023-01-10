@@ -1,0 +1,142 @@
+openapi: 3.0.0
+
+info: 
+    title: Cat Adoption API 
+    description: This is a simple API to adopt cats.
+    version: 1.0.0
+
+
+servers:
+    - url: https://example.com
+
+paths:
+
+    /cats: 
+
+        post:
+            summary: Add Cat
+            description: This allows you to add a single cat. 
+            operationId: addCat
+
+            requestBody:
+                description: This is the cat object.
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Cat'
+                            examples:
+                                cat: 
+                                    id: 1
+                                    name: Shadow
+                                    eyeColor: Orange
+            responses:
+                '200':
+                    description: the cat has been created.               
+
+        get:
+            summary: Get Cat
+            description: This allows you to get all the cats. 
+            operationId: getCat
+
+            parameters:
+                - name: status
+                  in: query
+                  description: This is used to filter cats to return their status.
+                  schema:
+                      type: string
+
+
+            responses:
+                '200':
+                    description: Returned successful list of all Cats.
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Cat'
+                                examples:
+                                    cat: 
+                                        id: 1
+                                        name: Shadow
+                                        eyeColor: Orange
+
+    /cats/id:
+        
+        put:
+            summary: Update Cat
+            description: This allows you to update a single cat. 
+            operationId: updateCat
+
+            requestBody:
+                description: This is the cat object.
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Cat'
+                            examples:
+                                cat: 
+                                    id: 1
+                                    name: Shadow
+                                    eyeColor: Orange
+            responses:
+                '204':
+                    description: the cat has been updated.
+
+        get:
+            summary: Get Cat
+            description: This allows you to get the specific cat. 
+            operationId: getThatCat
+
+            responses:
+                '200':
+                    description: Returned successful particular Cat.
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Cat'
+                                examples:
+                                    cat: 
+                                        id: 1
+                                        name: Shadow
+                                        eyeColor: Orange
+
+components: 
+    schemas: 
+        Cats:
+            type: array
+            items:
+                $ref: '#/components/schemas/Cat'
+        Cat:
+            type: object 
+            required:
+                - name
+                - eyeColor   
+            properties: 
+                id:
+                    type: integer
+                name: 
+                    type: string
+                    description: string
+                owner:
+                    type: string
+                breed: 
+                    type: string
+                age: 
+                    type: integer
+                gender:
+                    type: boolean
+                eyeColor: 
+                    type: array
+                    items: 
+                        type: string
+                weight:
+                    type: integer
+                fluffy:
+                    type: boolean
+                status:
+                    type: string
+                    enum:
+                        - Adopted
+                        - Available
+                        - Unavailable
