@@ -1,0 +1,21 @@
+Open API within postman
+
+Info: what the API is and what it does
+There is no length limit to the description. Can go as long as you like.
+Paths is to get to the API in a restful kind of way.
+The schemas are managed using the components in OpenAPI 3.0. We will have the parts and pieces of the API and they can be reused throughout the API design.
+OpenAPI has JSON as its data modeling.
+Server is where we are going to host our API. we put urls in it. and after that comes the path that will lead us to the rest API.
+We will need to give a unique identifier for the paths so that we will be able to reference them later on. 
+The schema property $ref is for representing within this document a component with a # for the url.
+Every response body is followed by responses.
+If we need to return something then we create content in the responses. If not, just the description is enough as a status code that the operation has been done successfully.
+For a get request we do not need to have a request body as it is data we are requesting from the database. Hence, we will have the response without the request body.
+If we want to work with some specific element within the API like retrieving only one particular thing then we can give something like ‘our path url/{id of the thing we need}’ so here we will pass the parameter through ‘put’ to modify as required or post to create. Or delete etc,.
+We can comment by using # in the ymal file.
+Once we create the complete API design we can save in postman and press generate collection.
+By filling in the details we get the API up with all its requests. It will also create an environment with the base url.
+If we want to publish the documentation then we can generate collection -> API documentation -> create collection -> click the three dots on the side of the document name -> view documentation -> publish.
+https://documenter.getpostman.com/view/20673196/2s8Z76w9qt -> this is my created documentation.
+With the Run in postman button in the published documentation, anyone with the URL will be able to import the whole documentation, run it on their own environments.
+They can comment on individual requests as well.
